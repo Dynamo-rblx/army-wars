@@ -1,0 +1,5 @@
+-- @ScriptType: LocalScript
+script.Parent.FocusLost:Connect(function(enter, iO)
+	print(tostring(tonumber(script.Parent.Text)))
+	game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("updateSpawnNumber"):FireServer(tonumber(script.Parent.Text))
+end)
