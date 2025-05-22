@@ -1,5 +1,9 @@
 -- @ScriptType: LocalScript
-script.Parent.FocusLost:Connect(function(enter, iO)
-	print(tostring(tonumber(script.Parent.Text)))
-	game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("updateSpawnNumber"):FireServer(tonumber(script.Parent.Text))
+local textbox = script.Parent
+
+textbox:GetPropertyChangedSignal("Text"):Connect(function()
+	local newText = string.gsub(textbox.Text, "%D", "")
+	if newText ~= textbox.Text then
+		textbox.Text = newText
+	end
 end)
